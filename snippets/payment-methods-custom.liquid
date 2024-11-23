@@ -1,0 +1,55 @@
+{% comment %}
+  Usage:
+  {% render 'payment-methods-custom' %}
+{% endcomment %}
+
+<div id="payment-methods-custom">
+  <span class="payment_methods_custom_title">Sicher bezahlen mit:</span>
+  <ul class="payment-icons list--inline">
+    {% assign enabled_payment_types = 'paypal,apple_pay,visa,master,klarna,google_pay' | remove: ' ' | split: ',' %}
+    {% for type in enabled_payment_types %}
+      <li>
+        {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+<style>
+  #payment-methods-custom {
+    /* -- Abstand zum Inhalt davor/danach -- */
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    /* -- Rechts, Zentriert oder Linksbündig (Icons/Text) -- */
+    text-align: center;
+  }
+
+  #payment-methods-custom .payment_methods_custom_title {
+    /* -- Schriftgrösse/Typ/Farbe -- */
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .payment-icons .icon {
+    /* -- Grösse der Icons -- */
+    width: 45px;
+    height: 28px;
+
+    /* -- Abstand zum Titel -- */
+    margin-top: 5px;
+  }
+
+  /* -- Definitionen für die Auflistung, kann bei den Shopify-Standad Themes entfernt werden (da schon vorhanden im Theme) -- */
+  .list--inline {
+    padding: 0;
+    margin: 0;
+  }
+
+  .list--inline li {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+</style>

@@ -1,0 +1,14 @@
+#cart-countdown {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #856404;
+}
+
+#countdown-timer {
+    color: #d9534f;
+}

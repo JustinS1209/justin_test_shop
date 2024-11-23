@@ -1,0 +1,54 @@
+{% comment %}
+  Accepts:
+  - custom_count: Number of purchases
+{% endcomment %}
+
+<style>
+  .circle-image {
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+  }
+  .circle-image.second {
+    margin-left: -15px;
+  }
+  .image-text {
+    display: flex;
+    align-items: center;
+  }
+  .image-text span {
+    margin-left: 10px;
+  }
+</style>
+
+<div class="image-text">
+  <img
+    class="circle-image"
+    src="https://cdn.shopify.com/s/files/1/0812/5238/5112/files/custom-trust-image_1.png?v=1710077378"
+    width="40px"
+    height="40px"
+    alt=""
+  >
+  <img
+    class="circle-image second"
+    src="https://cdn.shopify.com/s/files/1/0812/5238/5112/files/custom-trust-image_2.png?v=1710077379"
+    width="40px"
+    height="40px"
+    alt=""
+  >
+  <div style="margin-left:15px">
+    <span style="margin-left: -2px">{{ 'custom.trust.purchased_text_pre_count' | t }}</span>
+    <strong><span id="customTrustCount"></span></strong>
+    <span>{{ 'custom.trust.purchased_text_post_count' | t }}</span>
+  </div>
+</div>
+<script>
+  var baseCount = {{ custom_count }};
+  var increment = Math.floor(Date.now() / 1000 / 60 / 60 / 24 / 1000);
+  var newCount = baseCount + increment;
+
+  var textPre = "{{ 'custom.trust.purchased_text_pre_count' | t }}";
+  var textPost = "{{ 'custom.trust.purchased_text_post_count' | t }}";
+
+  document.getElementById('customTrustCount').innerHTML = newCount;
+</script>

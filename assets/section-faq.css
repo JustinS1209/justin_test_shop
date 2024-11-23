@@ -1,0 +1,45 @@
+.accordion {
+  
+  margin: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+details.accordion-item {
+  border-top: 1px solid #ddd;
+}
+
+details.accordion-item:first-child {
+  border-top: none;
+}
+
+summary.accordion-title {
+  background-color: #f7f7f7;
+  color: #333;
+  padding: 15px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+summary.accordion-title::-webkit-details-marker {
+  display: none;
+}
+
+
+summary.accordion-title::after {
+  content: '►';
+  position: absolute;
+  right: 20px;
+  transition: transform 0.3s ease;
+}
+
+details[open] summary.accordion-title::after {
+  transform: rotate(90deg);
+}
+
+
+.accordion-content {
+  padding: 0 15px 15px;
+  overflow: hidden;
+}

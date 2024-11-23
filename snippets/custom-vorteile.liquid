@@ -1,0 +1,47 @@
+{% comment %}
+  Accepts:
+    - background_color: Background color
+    - advantage_1: First advantage
+    - image_1: image for first advantage
+    - image_1_url: Image URL for first advantage
+    - icon_advantage_1: Icon for first advantage
+    - advantage_2: Second advantage
+    - image_2: image for second advantage
+    - image_2_url: Image URL for second advantage
+    - icon_advantage_2: Icon for second advantage
+  {%render 'custom-vorteile' %}
+{% endcomment %}
+
+<div style="display: flex; justify-content: space-around;">
+    {% if advantage_1 != blank %}
+    <div style="display: flex; align-items: center; justify-content: center; border-radius: 5px; flex: 1; background-color: {{ background_color }}; margin-right: 7px; padding-left: 5px;">
+        {% if image_1 %}
+            <img class="table-image" height="22px" width="22px" src="{{ image_1 | img_url: '22x' }}">
+        {% elsif image_1_url != blank %}
+            <img class="table-image" height="22px" width="22px" src="{{image_1_url |  image_url: '22x' }}">
+        {% else %}
+            {% render 'icon-accordion', icon: icon_advantage_1, verticalAlignMiddle: true %}
+        {% endif %}
+        <p style="margin-left: 5px; text-align: center;">{{ advantage_1 }}</p>
+    </div>
+    {% endif %}
+    {% if advantage_2 != blank %}
+    <div style="display: flex; align-items: center; justify-content: center; border-radius: 5px; flex: 1; background-color: {{ background_color }}; margin-left: 7px; padding-left: 5px;">
+        {% if image_2 %}
+            <img class="table-image" height="22px" width="22px" src="{{ image_2 | img_url: '22x' }}">
+        {% elsif image_2_url != blank %}
+            <img class="table-image" height="22px" width="22px" src="{{image_2_url |  image_url: '22x' }}">
+        {% else %}
+            {% render 'icon-accordion', icon: icon_advantage_2, verticalAlignMiddle: true %}
+        {% endif %}
+        <p style="margin-left: 5px; text-align: center;">{{ advantage_2 }}</p>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .table-image {
+        vertical-align: middle;
+        border-radius: 50%;
+    }
+</style>

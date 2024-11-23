@@ -1,0 +1,55 @@
+{{ 'section-faq.css' | asset_url | stylesheet_tag }}
+
+<div class="accordion">
+  <h2 class="h1"> {{ section.settings.headline }}</h2>
+
+  {% for block in section.blocks %}
+  
+  <details class="accordion-item">
+    <summary class="accordion-title">{{ block.settings.question }}</summary>
+    <div class="accordion-content">
+      <p>{{ block.settings.answer }}</p>
+    </div>
+  </details>
+  
+  {% endfor %}
+  
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "FAQ",
+    "settings": [
+      {
+        "type": "text",
+        "label": "Headline",
+        "id": "headline"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "question",
+        "type": "question",
+        "settings": [
+          {
+            "type": "text",
+            "label": "question",
+            "id": "question"
+          },
+          {
+            "type": "text",
+            "label": "answer",
+            "id": "answer"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQ"
+      }
+    ]
+  }
+{% endschema %}

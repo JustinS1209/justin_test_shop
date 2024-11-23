@@ -1,0 +1,42 @@
+{% comment %}
+    Accepts:
+        - image: image
+        - text: text
+        - image_url: image_url
+        - icon: icon
+    Usage:
+  {%render 'custom-icon-with-text' %}
+{% endcomment %}
+
+<table class="icon-text-block">
+  <tr>
+    <td class="table-icon-col">
+      {% if image %}
+        <img class="table-image" height="22px" width="22px" src="{{ image | img_url: '22x' }}">
+      {% elsif image_url != blank %}
+        <img class="table-image" height="22px" width="22px" src="{{image_url |  image_url: '22x' }}">
+      {% else %}
+        {% render 'icon-accordion', icon: icon, verticalAlignMiddle: true %}
+      {% endif %}
+    </td>
+    <td class="table-text-col">
+      {{ text }}
+    </td>
+  </tr>
+</table>
+
+<style>
+  .icon-text-block {
+    height: 18px;
+  }
+  .table-image {
+    vertical-align: middle;
+    border-radius: 50%;
+  }
+  .table-icon-col {
+    margin-right: 10px;
+  }
+  .table-text-col {
+    padding-left: 10px;
+  }
+</style>
