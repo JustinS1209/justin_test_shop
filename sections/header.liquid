@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-header.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
@@ -335,6 +336,19 @@
           </div>
         {%- endif -%}
       </a>
+      {% comment %} BEGIN Custom Button {% endcomment %}
+      {% if section.settings.CUSTOM_action_button_show %}
+        <a href="{{ section.settings.CUSTOM_action_button_link }}"
+           class="button button--{{ section.settings.CUSTOM_action_button_style }}"
+           style="
+                   margin-left: {{ section.settings.CUSTOM_action_button_margin_left }}px;
+                   margin-right: {{ section.settings.CUSTOM_action_button_margin_right }}px;
+                 "
+           target="_blank">
+          {{ section.settings.CUSTOM_action_button_text }}
+        </a>
+      {% endif %}
+      {% comment %} END Custom Button {% endcomment %}
     </div>
   </header>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
@@ -501,6 +515,60 @@
   "class": "section-header",
   "max_blocks": 3,
   "settings": [
+    {
+      "type": "text",
+      "id": "CUSTOM_action_button_text",
+      "label": "Button Text",
+      "default": "Call to Action"
+    },
+    {
+      "type": "url",
+      "id": "CUSTOM_action_button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "checkbox",
+      "id": "CUSTOM_action_button_show",
+      "label": "Show Button",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "CUSTOM_action_button_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:sections.multirow.settings.button_style.options__1.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:sections.multirow.settings.button_style.options__2.label"
+        }
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "range",
+      "id": "CUSTOM_action_button_margin_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "CUSTOM_action_button_margin_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin right",
+      "default": 0
+    },
     {
       "type": "select",
       "id": "logo_position",
